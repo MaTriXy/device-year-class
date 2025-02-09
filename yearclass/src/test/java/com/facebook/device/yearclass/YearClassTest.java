@@ -15,7 +15,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.*;
 
@@ -97,11 +97,28 @@ public class YearClassTest {
     assertEquals(YearClass.CLASS_2013, yearClass);
   }
 
+  @PrepareForTest(DeviceInfo.class)
+  @Test
+  public void testGetYearCategoryS7() {
+    // CPU, frequency, RAM, and YearClass values from Samsung Galaxy Note8 (USA edition).
+    int yearClass = getYearClass(8, 2350000, 6144L * 1024 * 1024);
+    assertEquals(YearClass.CLASS_2016, yearClass);
+  }
+
+  @PrepareForTest(DeviceInfo.class)
+  @Test
+  public void testTotalRAM() {
+    //Test with only total RAM information available.
+    int yearClass = getYearClass(DeviceInfo.DEVICEINFO_UNKNOWN,
+        DeviceInfo.DEVICEINFO_UNKNOWN, 6144L * 1024 * 1024);
+    assertEquals(YearClass.CLASS_2016, yearClass);
+  }
+
   private int getYearClass(int numCores, int maxFreqKHz, long memoryBytes) {
     mockStatic(DeviceInfo.class);
     when(DeviceInfo.getNumberOfCPUCores()).thenReturn(numCores);
     when(DeviceInfo.getCPUMaxFreqKHz()).thenReturn(maxFreqKHz);
-    when(DeviceInfo.getTotalMemory((Context) anyObject())).thenReturn(memoryBytes);
+    when(DeviceInfo.getTotalMemory((Context) any())).thenReturn(memoryBytes);
     int yearClass = YearClass.get(null);
     PowerMockito.verifyStatic();
 

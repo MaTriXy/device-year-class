@@ -19,21 +19,22 @@ Mappings as of this writing (RAM is a ceiling):
 |     | 1.8GHz+   | 2013 |
 |  2GB|           | 2013 |
 |  3GB|           | 2014 |
-| more|           | 2015 |
+|  5GB|           | 2015 |
+| more|           | 2016 |
 
 ## Integration
 
 ### Download
 Download [the latest JARs](https://github.com/facebook/device-year-class/releases/latest) or grab via Gradle:
 ```groovy
-compile 'com.facebook.device.yearclass:yearclass:2.0.0'
+compile 'com.facebook.device.yearclass:yearclass:2.1.0'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.facebook.device.yearclass</groupId>
   <artifactId>yearclass</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
 </dependency>
 ```
 
@@ -60,7 +61,7 @@ if (year >= 2013) {
 See the `yearclass-sample` project for more details.
 
 ## Improve Device Year Class!
-See the CONTRIBUTING.md file for how to help out.
+See the [CONTRIBUTING.md](https://github.com/facebook/device-year-class/blob/master/CONTRIBUTING.md) file for how to help out.
 
 ## License
-Device Year Class is BSD-licensed. We also provide an additional patent grant.
+Device Year Class is [BSD-licensed](https://github.com/facebook/device-year-class/blob/master/LICENSE). We also provide an additional patent grant.
